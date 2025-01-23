@@ -10,19 +10,19 @@ This is a Typst package to add cut, bleed, and registration marks to documents.
 ```typst
 #import "@preview/markly:0.2.0"
 
-#let markly_context = markly.setup(
-  stock_width:4in,
-  stock_height:3in,
+#let markly-context = markly.setup(
+  stock-width:4in,
+  stock-height:3in,
 
-  content_width: 3in,
-  content_height:2in,
+  content-width: 3in,
+  content-height:2in,
 )
 
-#show: markly.page_setup.with(markly_context)
+#show: markly.page-setup.with(markly-context)
 
-// Here the local title template uses markly's to_bleed
-#let title(body, inset_y:12pt) = {
-  markly.to_bleed(text(white, size:2.5em, body), markly_context)
+// Here the local title template uses markly's to-bleed
+#let title(body, inset-y:12pt) = {
+  markly.to-bleed(text(white, size:2.5em, body), markly-context)
 }
 
 #title[Bannar]
@@ -55,29 +55,29 @@ You need to import the package and setup parameters for the page setup.
 #import "@preview/markly:0.2.0": *
 
 // Set a dictionary of layout parameters that will be passed to other markly functions
-#let markly_context = markly_setup(
-  // stock_width:8.5in,
-  // stock_height:11in,
+#let markly-context = markly-setup(
+  // stock-width:8.5in,
+  // stock-height:11in,
 
-  content_width:7in,
-  content_height:5in,
+  content-width:7in,
+  content-height:5in,
 
   // bleed:9pt,
 
-  // margin_width:.2in,
-  // margin_height:.2in
+  // margin-width:.2in,
+  // margin-height:.2in
 )
 
 // Configure the page to draw marks
-#show: markly_page_setup.with(markly_context)
+#show: markly-page-setup.with(markly-context)
 
 content...
 
 ```
 
-Use `to_bleed`, `to_bleed_left`, or `to_bleed_right` to paint a background to the bleed marks.
+Use `to-bleed`, `to-bleed-left`, or `to-bleed-right` to paint a background to the bleed marks.
 
-Use `img_to_bleed` to stretch an image horizontally and vertically to the bleed marks.  The position of the "cursor" is not updated (like in the case of a background image) since it uses the `place` function.
+Use `img-to-bleed` to stretch an image horizontally and vertically to the bleed marks.  The position of the "cursor" is not updated (like in the case of a background image) since it uses the `place` function.
 
 
 # Design

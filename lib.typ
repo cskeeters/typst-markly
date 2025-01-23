@@ -1,25 +1,25 @@
 #import "@preview/cetz:0.3.1"
 
-#let marks(markly_context) = {
+#let marks(markly-context) = {
 
-  // Extract from markly_context
-  let stock_width = markly_context.at("stock_width")
-  let stock_height = markly_context.at("stock_height")
+  // Extract from markly-context
+  let stock-width = markly-context.at("stock-width")
+  let stock-height = markly-context.at("stock-height")
 
-  let content_width = markly_context.at("content_width")
-  let content_height = markly_context.at("content_height")
+  let content-width = markly-context.at("content-width")
+  let content-height = markly-context.at("content-height")
 
-  let bleed = markly_context.at("bleed")
+  let bleed = markly-context.at("bleed")
 
 
 
-  let mark_length=10pt
-  let mark_standoff=bleed + 2pt
-  let cut_mark_color = black
-  let bleed_mark_color = red
+  let mark-length=10pt
+  let mark-standoff=bleed + 2pt
+  let cut-mark-color = black
+  let bleed-mark-color = red
 
-  let slug_width=(stock_width - content_width) / 2
-  let slug_height=(stock_height - content_height) / 2
+  let slug-width=(stock-width - content-width) / 2
+  let slug-height=(stock-height - content-height) / 2
 
   cetz.canvas(
     length: 1pt,
@@ -28,99 +28,99 @@
 
       // This just ensures that we have a coordinate system that covers the whole page
       // grid((0,0), (612,792), stroke:none, step: 72)
-      grid((0,0), (stock_width.pt(),stock_height.pt()), stroke:none, step: 72)
+      grid((0,0), (stock-width.pt(),stock-height.pt()), stroke:none, step: 72)
 
-      let draw_marks(top_left, top_right, bottom_left, bottom_right, color:black) = {
+      let draw-marks(top-left, top-right, bottom-left, bottom-right, color:black) = {
         // Top Left
-        let from = top_left
-        from.at(1) += mark_standoff
+        let from = top-left
+        from.at(1) += mark-standoff
 
         let to = from
-        to.at(1) += mark_length
+        to.at(1) += mark-length
 
         line(from, to, stroke: color)
 
 
-        let from = top_left
-        from.at(0) -= mark_standoff
+        let from = top-left
+        from.at(0) -= mark-standoff
 
         let to = from
-        to.at(0) -= mark_length
+        to.at(0) -= mark-length
         line(from, to, stroke: color)
 
 
         // Top Right
-        let from = top_right
-        from.at(1) += mark_standoff
+        let from = top-right
+        from.at(1) += mark-standoff
 
         let to = from
-        to.at(1) += mark_length
+        to.at(1) += mark-length
 
         line(from, to, stroke: color)
 
 
-        let from = top_right
-        from.at(0) += mark_standoff
+        let from = top-right
+        from.at(0) += mark-standoff
 
         let to = from
-        to.at(0) += mark_length
+        to.at(0) += mark-length
         line(from, to, stroke: color)
 
 
 
         // Bottom Left
-        let from = bottom_left
-        from.at(1) -= mark_standoff
+        let from = bottom-left
+        from.at(1) -= mark-standoff
 
         let to = from
-        to.at(1) -= mark_length
+        to.at(1) -= mark-length
 
         line(from, to, stroke: color)
 
 
-        let from = bottom_left
-        from.at(0) -= mark_standoff
+        let from = bottom-left
+        from.at(0) -= mark-standoff
 
         let to = from
-        to.at(0) -= mark_length
+        to.at(0) -= mark-length
         line(from, to, stroke: color)
 
 
         // Bottom Right
-        let from = bottom_right
-        from.at(1) -= mark_standoff
+        let from = bottom-right
+        from.at(1) -= mark-standoff
 
         let to = from
-        to.at(1) -= mark_length
+        to.at(1) -= mark-length
 
         line(from, to, stroke: color)
 
 
-        let from = bottom_right
-        from.at(0) += mark_standoff
+        let from = bottom-right
+        from.at(0) += mark-standoff
 
         let to = from
-        to.at(0) += mark_length
+        to.at(0) += mark-length
         line(from, to, stroke: color)
       }
 
-      let cut_top_left = (slug_width, stock_height - slug_height)
-      let cut_top_right = (stock_width - slug_width, stock_height - slug_height)
-      let cut_bottom_left = (slug_width, slug_height)
-      let cut_bottom_right = (stock_width - slug_width, slug_height)
-      draw_marks(cut_top_left, cut_top_right, cut_bottom_left, cut_bottom_right)
+      let cut-top-left = (slug-width, stock-height - slug-height)
+      let cut-top-right = (stock-width - slug-width, stock-height - slug-height)
+      let cut-bottom-left = (slug-width, slug-height)
+      let cut-bottom-right = (stock-width - slug-width, slug-height)
+      draw-marks(cut-top-left, cut-top-right, cut-bottom-left, cut-bottom-right)
 
       if bleed != 0pt {
 
-        let bleed_top_left = (slug_width - bleed, stock_height - slug_height + bleed)
-        let bleed_top_right = (stock_width - slug_width + bleed, stock_height - slug_height + bleed)
-        let bleed_bottom_left = (slug_width - bleed, slug_height - bleed)
-        let bleed_bottom_right = (stock_width - slug_width + bleed, slug_height - bleed)
+        let bleed-top-left = (slug-width - bleed, stock-height - slug-height + bleed)
+        let bleed-top-right = (stock-width - slug-width + bleed, stock-height - slug-height + bleed)
+        let bleed-bottom-left = (slug-width - bleed, slug-height - bleed)
+        let bleed-bottom-right = (stock-width - slug-width + bleed, slug-height - bleed)
 
-        draw_marks(bleed_top_left, bleed_top_right, bleed_bottom_left, bleed_bottom_right, color:bleed_mark_color)
+        draw-marks(bleed-top-left, bleed-top-right, bleed-bottom-left, bleed-bottom-right, color:bleed-mark-color)
       }
 
-      let registration_color(position, color) = {
+      let registration-color(position, color) = {
         circle(position, radius: 6pt, stroke: .6pt + color)
         circle(position, radius: 4pt, stroke: none, fill: color)
 
@@ -151,128 +151,128 @@
 
       let registration(position) = {
         // I'm not sure that this will not be sqashed before these are printing.
-        registration_color(position, cmyk(100%,   0%,   0%,   0%))
-        registration_color(position, cmyk(  0%, 100%,   0%,   0%))
-        registration_color(position, cmyk(  0%,   0%, 100%,   0%))
-        registration_color(position, cmyk(  0%,   0%,   0%, 100%))
+        registration-color(position, cmyk(100%,   0%,   0%,   0%))
+        registration-color(position, cmyk(  0%, 100%,   0%,   0%))
+        registration-color(position, cmyk(  0%,   0%, 100%,   0%))
+        registration-color(position, cmyk(  0%,   0%,   0%, 100%))
       }
 
 
-      registration((stock_width / 2, stock_height - slug_height / 2)) // Top
-      registration((stock_width / 2, slug_height / 2)) //Bottom
-      registration((slug_width / 2, stock_height / 2)) // Left
-      registration((stock_width - slug_width / 2, stock_height / 2)) // Right
+      registration((stock-width / 2, stock-height - slug-height / 2)) // Top
+      registration((stock-width / 2, slug-height / 2)) //Bottom
+      registration((slug-width / 2, stock-height / 2)) // Left
+      registration((stock-width - slug-width / 2, stock-height / 2)) // Right
     }
   )
 }
 
 // This creates a background color that extends to the bleed line on the left and right
-#let to_bleed(body, markly_context, color: white, bg_color:blue.darken(30%), inset_y:12pt) = {
+#let to-bleed(body, markly-context, color: white, bg-color:blue.darken(30%), inset-y:12pt) = {
 
-  // Extract from markly_context
-  let margin_width = markly_context.at("margin_width")
-  let bleed = markly_context.at("bleed")
+  // Extract from markly-context
+  let margin-width = markly-context.at("margin-width")
+  let bleed = markly-context.at("bleed")
 
   block(
-    fill: bg_color,
+    fill: bg-color,
     width: 100%,
-    outset: (x: bleed+margin_width), // paints until bleed cutoff
-    inset: (y:inset_y), // padding height for background color
+    outset: (x: bleed+margin-width), // paints until bleed cutoff
+    inset: (y:inset-y), // padding height for background color
     text(color, body)
   )
 }
 
 
 // This creates a background color that extends to the bleed line on the right
-#let to_bleed_right(body, markly_context, color: white, bg_color:blue.darken(30%), padding:12pt) = {
+#let to-bleed-right(body, markly-context, color: white, bg-color:blue.darken(30%), padding:12pt) = {
 
-  // Extract from markly_context
-  let margin_width = markly_context.at("margin_width")
-  let bleed = markly_context.at("bleed")
+  // Extract from markly-context
+  let margin-width = markly-context.at("margin-width")
+  let bleed = markly-context.at("bleed")
 
   block(
-    fill: bg_color,
+    fill: bg-color,
     width: 100%,
-    outset: (right: bleed+margin_width), // paints until bleed cutoff
+    outset: (right: bleed+margin-width), // paints until bleed cutoff
     inset: (left:padding, y:padding), // padding height for background color
     text(color, body)
   )
 }
 
 // This creates a background color that extends to the bleed line on the left
-#let to_bleed_left(body, markly_context, color: white, bg_color:blue.darken(30%), padding:12pt) = {
+#let to-bleed-left(body, markly-context, color: white, bg-color:blue.darken(30%), padding:12pt) = {
 
-  // Extract from markly_context
-  let margin_width = markly_context.at("margin_width")
-  let bleed = markly_context.at("bleed")
+  // Extract from markly-context
+  let margin-width = markly-context.at("margin-width")
+  let bleed = markly-context.at("bleed")
 
   block(
-    fill: bg_color,
+    fill: bg-color,
     width: 100%,
-    outset: (left: bleed+margin_width), // paints until bleed cutoff
+    outset: (left: bleed+margin-width), // paints until bleed cutoff
     inset: (right:padding, y:padding), // padding height for background color
     text(color, body)
   )
 }
 
-#let img_to_bleed(img_data, markly_context) = {
+#let img-to-bleed(img-data, markly-context) = {
 
-  // Extract from markly_context
-  let margin_width = markly_context.at("margin_width")
-  let margin_height = markly_context.at("margin_height")
-  let bleed = markly_context.at("bleed")
+  // Extract from markly-context
+  let margin-width = markly-context.at("margin-width")
+  let margin-height = markly-context.at("margin-height")
+  let bleed = markly-context.at("bleed")
 
   place(
     top + left,
-    dx: -(margin_width+bleed),
-    dy: -(margin_height+bleed),
+    dx: -(margin-width+bleed),
+    dy: -(margin-height+bleed),
     image.decode(
-      img_data,
-      width:100%+margin_width*2+bleed*2,
-      height:100%+margin_height*2+bleed*2)
+      img-data,
+      width:100%+margin-width*2+bleed*2,
+      height:100%+margin-height*2+bleed*2)
   )
 }
 
 // This just creates a dict that can be used by the other functions
 // Hopefully this makes markly templates more intuitive.
 #let setup(
-  stock_width:8.5in,
-  stock_height:11in,
+  stock-width:8.5in,
+  stock-height:11in,
 
-  content_width:6in,
-  content_height:4in,
+  content-width:6in,
+  content-height:4in,
 
   bleed:9pt,
 
-  margin_width:.2in,
-  margin_height:.2in
+  margin-width:.2in,
+  margin-height:.2in
 ) = {
 
-  let markly_context = (:)
-  markly_context.insert("stock_height", stock_height)
-  markly_context.insert("stock_width",  stock_width)
+  let markly-context = (:)
+  markly-context.insert("stock-height", stock-height)
+  markly-context.insert("stock-width",  stock-width)
 
-  markly_context.insert("content_height", content_height)
-  markly_context.insert("content_width",  content_width)
+  markly-context.insert("content-height", content-height)
+  markly-context.insert("content-width",  content-width)
 
-  markly_context.insert("margin_height", margin_height)
-  markly_context.insert("margin_width",  margin_width)
+  markly-context.insert("margin-height", margin-height)
+  markly-context.insert("margin-width",  margin-width)
 
-  markly_context.insert("bleed",  bleed)
+  markly-context.insert("bleed",  bleed)
 
-  return markly_context
+  return markly-context
 }
 
-#let page_setup(markly_context, body) = {
+#let page-setup(markly-context, body) = {
 
   set page(
-    width: markly_context.at("stock_width"),
-    height: markly_context.at("stock_height"),
+    width: markly-context.at("stock-width"),
+    height: markly-context.at("stock-height"),
     margin: (
-      x: (markly_context.at("stock_width") - markly_context.at("content_width")) / 2 + markly_context.at("margin_width"),
-      y: (markly_context.at("stock_height") - markly_context.at("content_height")) / 2 + markly_context.at("margin_height"),
+      x: (markly-context.at("stock-width") - markly-context.at("content-width")) / 2 + markly-context.at("margin-width"),
+      y: (markly-context.at("stock-height") - markly-context.at("content-height")) / 2 + markly-context.at("margin-height"),
     ),
-    background: marks(markly_context),
+    background: marks(markly-context),
   )
 
   body

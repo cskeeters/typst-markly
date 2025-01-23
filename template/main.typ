@@ -1,17 +1,17 @@
 #import "@preview/markly:0.2.0"
 
-#let markly_context = markly.setup(
-  content_width: 6in,
-  content_height:4in,
+#let markly-context = markly.setup(
+  content-width: 6in,
+  content-height:4in,
 )
 
-#show: markly.page_setup.with(markly_context)
+#show: markly.page-setup.with(markly-context)
 
 
 //////////////////////////////////////////// Templates
 
-#let title(body, inset_y:12pt) = {
-  markly.to_bleed(text(white, size:2.5em, body), markly_context)
+#let title(body, inset-y:12pt) = {
+  markly.to-bleed(text(white, size:2.5em, body), markly-context)
 }
 
 #let author(body) = {
@@ -77,13 +77,13 @@
 #pagebreak(weak: true)
 
 // Load data here so path is relative to this file
-#let img_data = read("ping-pong.jpg", encoding: none)
+#let img-data = read("ping-pong.jpg", encoding: none)
 
-// Use markly's img_to_bleed to stretch an image to the bleed marks
+// Use markly's img-to-bleed to stretch an image to the bleed marks
 
-// Note: Image should be 72*content_width+bleed by 72*content_height+bleed to not be distored
+// Note: Image should be 72*content-width+bleed by 72*content-height+bleed to not be distored
 //       (72*6+9, 72*4+9) = (441x297)
-#markly.img_to_bleed(img_data, markly_context)
+#markly.img-to-bleed(img-data, markly-context)
 
 #text(font:"Source Sans Pro", 4em, white, weight:900)[
   Play On
