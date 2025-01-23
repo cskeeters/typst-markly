@@ -43,36 +43,69 @@ Since this is a bit difficult to do there are some limitations to using this pac
 * The `background` field of the `page` can't be used unless there is a wrapper function so that `marks` is called also.
 
 
-# Usage
+# Installation
 
-Currently, this package has **not** been published.  To try it out, you must download it locally.
+Currently, this package has **not yet** been published.  To try it out, you must download it locally.  There are many ways to do this.
 
-    git clone git@github.com:cskeeters/typst-markly.git 0.2.0
+## Install via git and typship
 
-    mkdir markly
-    mv 0.2.0 markly
+```sh
+git clone git@github.com:cskeeters/typst-markly.git
+cd markly
 
-    cd markly/0.2.0
-    git checkout -b 0.2 origin/v0.2.0
+# Install typship, if not already installed
+cargo install typship
 
-markly needs to be moved into the `data-dir` which [varies by OS](https://github.com/typst/packages/blob/main/README.md#local-packages).
+typship install preview
+```
 
-    mv markly $DATA_DIR/typst/packages/preview/
+Answer `y`es, when warned.
 
-You can use [typship](https://github.com/sjfhsjfh/typship) to install the package instead of moving it manually, but typship does not support removing packages.
 
-    # Install typship if you havn't already
+## Install via git
+
+First set `$DATA_DIR` [according to your OS](https://github.com/typst/packages/blob/main/README.md#local-packages).  Yes, this sucks.
+
+```sh
+mkdir $DATA_DIR/typst/packages/preview/markly
+cd $DATA_DIR/typst/packages/preview/markly
+
+git clone git@github.com:cskeeters/typst-markly.git 0.2.0
+cd 0.2.0
+git checkout -b 0.2 origin/v0.2.0
+```
+
+## Install with typship to local namespace
+
     cargo install typship
 
-    typship install preview
-    # Answer Yes
+    typship download https://github.com/cskeeters/typst-markly/
 
-One you have it installed, you can init a new package with:
+To use, you have to change 
 
-    cd
-    typst init @preview/markly:0.2.0
-    cd markly
-    typst compile main.typ
+```typst
+#import "@preview/markly:0.2.0"
+```
+
+to
+
+```typst
+#import "@local/markly:0.2.0"
+```
+
+NOTE: `typship` doesn't support downloading to the preview namespace in the `{data-dir}`, otherwise this wouldn't be necessary.
+
+
+# Usage
+
+Initialize a new project from this template:
+
+```sh
+cd
+typst init @preview/markly:0.2.0
+cd markly
+typst compile main.typ
+```
 
 ## Setup
 
