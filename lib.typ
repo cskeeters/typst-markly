@@ -187,3 +187,15 @@
     text(color, body)
   )
 }
+
+#let img_to_bleed(img_src, margin_width, margin_height, bleed) = {
+  place(
+    top + left,
+    dx: -(margin_width+bleed),
+    dy: -(margin_height+bleed),
+    image(
+      img_src,
+      width:100%+margin_width*2+bleed*2,
+      height:100%+margin_height*2+bleed*2)
+  )
+}
