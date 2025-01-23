@@ -1,4 +1,6 @@
-This is a Typst package to add cut, bleed, and registration marks to documents.
+This is a [Typst](https://github.com/typst/typst) package to add cut, bleed, and registration marks to documents.
+
+It's likely that some future version of Typst will obsolete this package.  Until that time, it's nice to have **a** way to achieve this functionality with the current version.
 
 
 # Demo
