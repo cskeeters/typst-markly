@@ -49,7 +49,7 @@ content...
 
 Use `to_bleed`, `to_bleed_left`, or `to_bleed_right` to paint a background to the bleed marks.
 
-See [demo-salad.typ](demo-salad.typ) and [demo-salad.pdf](demo-salad.pdf)
+See [demo.typ](demo.typ) and [demo.pdf](demo.pdf)
 
 # Design
 
