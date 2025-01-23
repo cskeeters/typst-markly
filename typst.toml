@@ -1,0 +1,7 @@
+[package]
+name = "markly"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Chad Skeeters"]
+license = "MIT"
+description = "Cut/Bleed marks"
