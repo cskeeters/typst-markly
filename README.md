@@ -35,11 +35,6 @@ It's likely that some future version of Typst will obsolete this package.  Until
 
 For a more detailed example, see [main.typ](template/main.typ) and [main.pdf](main.pdf).
 
-# Getting Started
-
-    typst init @preview/markly:0.2.0
-
-
 # Notes
 
 Since this is a bit difficult to do there are some limitations to using this package.  Here are a few examples:
@@ -50,14 +45,69 @@ Since this is a bit difficult to do there are some limitations to using this pac
 
 # Usage
 
-You need to import the package and setup parameters for the page setup.
+Currently, this package has **not** been published.  To try it out, you must download it locally.
+
+    git clone git@github.com:cskeeters/typst-markly.git 0.2.0
+
+    mkdir markly
+    mv 0.2.0 markly
+
+    cd markly/0.2.0
+    git checkout -b 0.2 origin/v0.2.0
+
+markly needs to be moved into the `data-dir` which [varies by OS](https://github.com/typst/packages/blob/main/README.md#local-packages).
+
+    mv markly $DATA_DIR/typst/packages/preview/
+
+You can use [typship](https://github.com/sjfhsjfh/typship) to install the package instead of moving it manually, but typship does not support removing packages.
+
+    # Install typship if you havn't already
+    cargo install typship
+
+    typship install preview
+    # Answer Yes
+
+One you have it installed, you can init a new package with:
+
+    cd
+    typst init @preview/markly:0.2.0
+    cd markly
+    typst compile main.typ
+
+## Setup
+
+Use `setup` to create a "context" that other markly methods need.  This is just a dictionary with values it so we don't repeat values.
+
+The *stock* width and height is your *actual* paper size.
+
+| Parameter     | Default Value
+| ------------- | --------------
+| stock-width   | 8.5in
+| stock-height  | 11in
+
+The *content* width and height will be the size of the paper after cutting along the cut marks (black).
+
+| Parameter      | Default Value
+| -------------  | --------------
+| content-width  | 6in
+| content-height | 4in
+
+The *margin* width and height are the amounts between the edge of the cut line and the start of the content.  NOTE: total width consumed by margins equals 2 * margin-width since it's used on both sides of the content.  Same for height.
+
+| Parameter     | Default Value
+| ------------- | --------------
+| margin-width  | 6in
+| margin-height | 4in
+
+Finally, the `bleed` value is the distance between the cut line and bleed line, or the over-print amount that can occur because we have extra paper past the cut line.
+
+| Parameter     | Default Value
+| ------------- | --------------
+| bleed         | 9pt
 
 
 ```typst
-#import "@preview/markly:0.2.0": *
-
-// Set a dictionary of layout parameters that will be passed to other markly functions
-#let markly-context = markly-setup(
+#let markly-context = markly.setup(
   // stock-width:8.5in,
   // stock-height:11in,
 
@@ -71,11 +121,13 @@ You need to import the package and setup parameters for the page setup.
 )
 
 // Configure the page to draw marks
-#show: markly-page-setup.with(markly-context)
+#show: markly.page-setup.with(markly-context)
 
 content...
 
 ```
+
+## Print to Bleed Templates
 
 Use `to-bleed`, `to-bleed-left`, or `to-bleed-right` to paint a background to the bleed marks.
 
