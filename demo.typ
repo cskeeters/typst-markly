@@ -1,5 +1,4 @@
-// #import "@preview/markly:0.2.0": *
-#import "@local/markly:0.2.0": *
+#import "@preview/markly:0.2.0": *
 
 #let markly_context = markly_setup(
   content_width: 6in,
