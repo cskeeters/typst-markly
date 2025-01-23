@@ -1,18 +1,17 @@
-#import "@preview/markly:0.2.0": *
+#import "@preview/markly:0.2.0"
 
-#let markly_context = markly_setup(
+#let markly_context = markly.setup(
   content_width: 6in,
   content_height:4in,
 )
 
-#show: markly_page_setup.with(markly_context)
+#show: markly.page_setup.with(markly_context)
 
 
 //////////////////////////////////////////// Templates
 
-// Here the local title template uses markly's to_bleed
 #let title(body, inset_y:12pt) = {
-  to_bleed(text(white, size:2.5em, body), markly_context)
+  markly.to_bleed(text(white, size:2.5em, body), markly_context)
 }
 
 #let author(body) = {
@@ -84,7 +83,7 @@
 
 // Note: Image should be 72*content_width+bleed by 72*content_height+bleed to not be distored
 //       (72*6+9, 72*4+9) = (441x297)
-#img_to_bleed(img_data, markly_context)
+#markly.img_to_bleed(img_data, markly_context)
 
 #text(font:"Source Sans Pro", 4em, white, weight:900)[
   Play On

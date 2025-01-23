@@ -235,7 +235,7 @@
 
 // This just creates a dict that can be used by the other functions
 // Hopefully this makes markly templates more intuitive.
-#let markly_setup(
+#let setup(
   stock_width:8.5in,
   stock_height:11in,
 
@@ -263,7 +263,7 @@
   return markly_context
 }
 
-#let markly_page_setup(markly_context, body) = {
+#let page_setup(markly_context, body) = {
 
   set page(
     width: markly_context.at("stock_width"),
