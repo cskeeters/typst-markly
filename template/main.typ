@@ -77,11 +77,14 @@
 
 #pagebreak(weak: true)
 
+// Load data here so path is relative to this file
+#let img_data = read("ping-pong.jpg", encoding: none)
+
 // Use markly's img_to_bleed to stretch an image to the bleed marks
 
 // Note: Image should be 72*content_width+bleed by 72*content_height+bleed to not be distored
 //       (72*6+9, 72*4+9) = (441x297)
-#img_to_bleed("ping-pong.jpg", markly_context)
+#img_to_bleed(img_data, markly_context)
 
 #text(font:"Source Sans Pro", 4em, white, weight:900)[
   Play On

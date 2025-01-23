@@ -1,5 +1,6 @@
 This is a Typst package to add cut, bleed, and registration marks to documents.
 
+
 # Demo
 
 ![Markly Demo](img.png)
@@ -30,12 +31,18 @@ This is a Typst package to add cut, bleed, and registration marks to documents.
 ```
 
 
+# Getting Started
+
+    typst init @preview/markly:0.2.0
+
+
 # Notes
 
 Since this is a bit difficult to do there are some limitations to using this package.  Here are a few examples:
 
 * `inside`/`outside` margins don't work on pages
 * The `background` field of the `page` can't be used unless there is a wrapper function so that `marks` is called also.
+
 
 # Usage
 
@@ -71,6 +78,7 @@ Use `to_bleed`, `to_bleed_left`, or `to_bleed_right` to paint a background to th
 Use `img_to_bleed` to stretch an image horizontally and vertically to the bleed marks.  The position of the "cursor" is not updated (like in the case of a background image) since it uses the `place` function.
 
 See [demo.typ](demo.typ) and [demo.pdf](demo.pdf)
+
 
 # Design
 

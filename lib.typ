@@ -215,7 +215,7 @@
   )
 }
 
-#let img_to_bleed(img_src, markly_context) = {
+#let img_to_bleed(img_data, markly_context) = {
 
   // Extract from markly_context
   let margin_width = markly_context.at("margin_width")
@@ -226,8 +226,8 @@
     top + left,
     dx: -(margin_width+bleed),
     dy: -(margin_height+bleed),
-    image(
-      img_src,
+    image.decode(
+      img_data,
       width:100%+margin_width*2+bleed*2,
       height:100%+margin_height*2+bleed*2)
   )
