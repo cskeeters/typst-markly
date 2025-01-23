@@ -13,41 +13,32 @@ You need to import the package and setup parameters for the page setup.
 
 
 ```typst
-#import "@preview/markly:0.1.0": *
+#import "@preview/markly:0.2.0": *
 
-// Set the stock dimentions
-#let stock_width = 8.5in
-#let stock_height = 11in
+// Set a dictionary of layout parameters that will be passed to other markly functions
+#let markly_context = markly_setup(
+  // stock_width:8.5in,
+  // stock_height:11in,
 
-// Set desired content width (not including bleed)
-// Do 6x4 to print front and back on an Index card for Recipe box
-#let content_width = 6in
-#let content_height = 4in
+  content_width:7in,
+  content_height:5in,
 
-// Set distance between bleed marks and cut marks
-#let bleed = 9pt
+  // bleed:9pt,
 
-#let bleed_width = content_width + 2 * 6pt
-
-// Distance between cut marks and text
-#let margin_width = .2in
-#let margin_height = .2in
-
-#set page(
-  width: stock_width,
-  height: stock_height,
-  margin: (
-    x: (stock_width - content_width) / 2 + margin_width,
-    y: (stock_height - content_height) / 2 + margin_height,
-  ),
-  background: marks(stock_width:stock_width, stock_height: stock_height, content_width:content_width, content_height:content_height, bleed:bleed),
+  // margin_width:.2in,
+  // margin_height:.2in
 )
+
+// Configure the page to draw marks
+#show: markly_page_setup.with(markly_context)
 
 content...
 
 ```
 
 Use `to_bleed`, `to_bleed_left`, or `to_bleed_right` to paint a background to the bleed marks.
+
+Use `img_to_bleed` to stretch an image horizontally and vertically to the bleed marks.  The position of the "cursor" is not updated (like in the case of a background image) since it uses the `place` function.
 
 See [demo.typ](demo.typ) and [demo.pdf](demo.pdf)
 

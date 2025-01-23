@@ -1,34 +1,19 @@
-// #import "@preview/markly:0.1.0": *
-#import "@local/markly:0.1.0": *
+// #import "@preview/markly:0.2.0": *
+#import "@local/markly:0.2.0": *
 
-// Set the stock dimentions
-#let stock_width = 8.5in
-#let stock_height = 11in
-
-// Set desired content width (not including bleed)
-// Do 6x4 to print front and back on an Index card for Recipe box
-#let content_width = 6in
-#let content_height = 4in
-
-// Set distance between bleed marks and cut marks
-#let bleed = 9pt
-
-// Distance between cut marks and text
-#let margin_width = .2in
-#let margin_height = .2in
-
-#set page(
-  width: stock_width,
-  height: stock_height,
-  margin: (
-    x: (stock_width - content_width) / 2 + margin_width,
-    y: (stock_height - content_height) / 2 + margin_height,
-  ),
-  background: marks(stock_width:stock_width, stock_height: stock_height, content_width:content_width, content_height:content_height, bleed:bleed),
+#let markly_context = markly_setup(
+  content_width: 6in,
+  content_height:4in,
 )
 
+#show: markly_page_setup.with(markly_context)
+
+
+//////////////////////////////////////////// Templates
+
+// Here the local title template uses markly's to_bleed
 #let title(body, inset_y:12pt) = {
-  to_bleed(text(white, size:2.5em, body), margin_width, bleed)
+  to_bleed(text(white, size:2.5em, body), markly_context)
 }
 
 #let author(body) = {
@@ -49,6 +34,7 @@
 }
 
 
+//////////////////////////////////////////// Content
 
 #title[Blue Cheese Salad]
 
@@ -92,9 +78,11 @@
 
 #pagebreak(weak: true)
 
-// Image should be 72*content_width+bleed by 72*content_height+bleed to not be distored
-// (72*6+9, 72*4+9) = (441x297)
-#img_to_bleed("ping-pong.jpg", margin_width, margin_height, bleed)
+// Use markly's img_to_bleed to stretch an image to the bleed marks
+
+// Note: Image should be 72*content_width+bleed by 72*content_height+bleed to not be distored
+//       (72*6+9, 72*4+9) = (441x297)
+#img_to_bleed("ping-pong.jpg", markly_context)
 
 #text(font:"Source Sans Pro", 4em, white, weight:900)[
   Play On

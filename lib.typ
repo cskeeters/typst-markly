@@ -1,6 +1,18 @@
 #import "@preview/cetz:0.3.1"
 
-#let marks(stock_width:8.5in, stock_height: 11in, content_width:6in, content_height:9in, bleed:3mm) = {
+#let marks(markly_context) = {
+
+  // Extract from markly_context
+  let stock_width = markly_context.at("stock_width")
+  let stock_height = markly_context.at("stock_height")
+
+  let content_width = markly_context.at("content_width")
+  let content_height = markly_context.at("content_height")
+
+  let bleed = markly_context.at("bleed")
+
+
+
   let mark_length=10pt
   let mark_standoff=bleed + 2pt
   let cut_mark_color = black
@@ -155,7 +167,12 @@
 }
 
 // This creates a background color that extends to the bleed line on the left and right
-#let to_bleed(body, margin_width, bleed, color: white, bg_color:blue.darken(30%), inset_y:12pt) = {
+#let to_bleed(body, markly_context, color: white, bg_color:blue.darken(30%), inset_y:12pt) = {
+
+  // Extract from markly_context
+  let margin_width = markly_context.at("margin_width")
+  let bleed = markly_context.at("bleed")
+
   block(
     fill: bg_color,
     width: 100%,
@@ -167,7 +184,12 @@
 
 
 // This creates a background color that extends to the bleed line on the right
-#let to_bleed_right(body, margin_width, bleed, color: white, bg_color:blue.darken(30%), padding:12pt) = {
+#let to_bleed_right(body, markly_context, color: white, bg_color:blue.darken(30%), padding:12pt) = {
+
+  // Extract from markly_context
+  let margin_width = markly_context.at("margin_width")
+  let bleed = markly_context.at("bleed")
+
   block(
     fill: bg_color,
     width: 100%,
@@ -178,7 +200,12 @@
 }
 
 // This creates a background color that extends to the bleed line on the left
-#let to_bleed_left(body, margin_width, bleed, color: white, bg_color:blue.darken(30%), padding:12pt) = {
+#let to_bleed_left(body, markly_context, color: white, bg_color:blue.darken(30%), padding:12pt) = {
+
+  // Extract from markly_context
+  let margin_width = markly_context.at("margin_width")
+  let bleed = markly_context.at("bleed")
+
   block(
     fill: bg_color,
     width: 100%,
@@ -188,7 +215,13 @@
   )
 }
 
-#let img_to_bleed(img_src, margin_width, margin_height, bleed) = {
+#let img_to_bleed(img_src, markly_context) = {
+
+  // Extract from markly_context
+  let margin_width = markly_context.at("margin_width")
+  let margin_height = markly_context.at("margin_height")
+  let bleed = markly_context.at("bleed")
+
   place(
     top + left,
     dx: -(margin_width+bleed),
@@ -198,4 +231,49 @@
       width:100%+margin_width*2+bleed*2,
       height:100%+margin_height*2+bleed*2)
   )
+}
+
+// This just creates a dict that can be used by the other functions
+// Hopefully this makes markly templates more intuitive.
+#let markly_setup(
+  stock_width:8.5in,
+  stock_height:11in,
+
+  content_width:6in,
+  content_height:4in,
+
+  bleed:9pt,
+
+  margin_width:.2in,
+  margin_height:.2in
+) = {
+
+  let markly_context = (:)
+  markly_context.insert("stock_height", stock_height)
+  markly_context.insert("stock_width",  stock_width)
+
+  markly_context.insert("content_height", content_height)
+  markly_context.insert("content_width",  content_width)
+
+  markly_context.insert("margin_height", margin_height)
+  markly_context.insert("margin_width",  margin_width)
+
+  markly_context.insert("bleed",  bleed)
+
+  return markly_context
+}
+
+#let markly_page_setup(markly_context, body) = {
+
+  set page(
+    width: markly_context.at("stock_width"),
+    height: markly_context.at("stock_height"),
+    margin: (
+      x: (markly_context.at("stock_width") - markly_context.at("content_width")) / 2 + markly_context.at("margin_width"),
+      y: (markly_context.at("stock_height") - markly_context.at("content_height")) / 2 + markly_context.at("margin_height"),
+    ),
+    background: marks(markly_context),
+  )
+
+  body
 }
