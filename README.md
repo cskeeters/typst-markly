@@ -33,7 +33,7 @@ It's likely that some future version of Typst will obsolete this package.  Until
 ```
 
 
-For a more detailed example, see [main.typ](template/main.typ) and [main.pdf](main.pdf).
+For a more detailed example, see [main.typ](example/main.typ) and [main.pdf](example/main.pdf).
 
 # Notes
 
@@ -41,59 +41,6 @@ Since this is a bit difficult to do there are some limitations to using this pac
 
 * `inside`/`outside` margins don't work on pages
 * The `background` field of the `page` can't be used unless there is a wrapper function so that `marks` is called also.
-
-
-# Installation
-
-Currently, this package has **not yet** been published.  To try it out, you must download it locally.  There are many ways to do this.
-
-## Install via git and typship
-
-```sh
-git clone git@github.com:cskeeters/typst-markly.git
-cd markly
-
-# Install typship, if not already installed
-cargo install typship
-
-typship install preview
-```
-
-Answer `y`es, when warned.
-
-
-## Install via git
-
-First set `$DATA_DIR` [according to your OS](https://github.com/typst/packages/blob/main/README.md#local-packages).  Yes, this sucks.
-
-```sh
-mkdir $DATA_DIR/typst/packages/preview/markly
-cd $DATA_DIR/typst/packages/preview/markly
-
-git clone git@github.com:cskeeters/typst-markly.git 0.2.0
-cd 0.2.0
-git checkout -b 0.2 origin/v0.2.0
-```
-
-## Install with typship to local namespace
-
-    cargo install typship
-
-    typship download https://github.com/cskeeters/typst-markly/
-
-To use, you have to change 
-
-```typst
-#import "@preview/markly:0.2.0"
-```
-
-to
-
-```typst
-#import "@local/markly:0.2.0"
-```
-
-NOTE: `typship` doesn't support downloading to the preview namespace in the `{data-dir}`, otherwise this wouldn't be necessary.
 
 
 # Usage
