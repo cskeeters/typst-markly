@@ -11,7 +11,9 @@
 
   let bleed = markly-context.at("bleed")
 
-
+  let bleed-marks = markly-context.at("bleed-marks")
+  let cut-marks = markly-context.at("cut-marks")
+  let registration-marks = markly-context.at("registration-marks")
 
   let mark-length=10pt
   let mark-standoff=bleed + 2pt
@@ -104,13 +106,15 @@
         line(from, to, stroke: color)
       }
 
-      let cut-top-left = (slug-width, stock-height - slug-height)
-      let cut-top-right = (stock-width - slug-width, stock-height - slug-height)
-      let cut-bottom-left = (slug-width, slug-height)
-      let cut-bottom-right = (stock-width - slug-width, slug-height)
-      draw-marks(cut-top-left, cut-top-right, cut-bottom-left, cut-bottom-right)
+      if cut-marks {
+        let cut-top-left = (slug-width, stock-height - slug-height)
+        let cut-top-right = (stock-width - slug-width, stock-height - slug-height)
+        let cut-bottom-left = (slug-width, slug-height)
+        let cut-bottom-right = (stock-width - slug-width, slug-height)
+        draw-marks(cut-top-left, cut-top-right, cut-bottom-left, cut-bottom-right)
+      }
 
-      if bleed != 0pt {
+      if bleed-marks and bleed != 0pt {
 
         let bleed-top-left = (slug-width - bleed, stock-height - slug-height + bleed)
         let bleed-top-right = (stock-width - slug-width + bleed, stock-height - slug-height + bleed)
@@ -157,11 +161,12 @@
         registration-color(position, cmyk(  0%,   0%,   0%, 100%))
       }
 
-
-      registration((stock-width / 2, stock-height - slug-height / 2)) // Top
-      registration((stock-width / 2, slug-height / 2)) //Bottom
-      registration((slug-width / 2, stock-height / 2)) // Left
-      registration((stock-width - slug-width / 2, stock-height / 2)) // Right
+      if registration-marks {
+        registration((stock-width / 2, stock-height - slug-height / 2)) // Top
+        registration((stock-width / 2, slug-height / 2)) //Bottom
+        registration((slug-width / 2, stock-height / 2)) // Left
+        registration((stock-width - slug-width / 2, stock-height / 2)) // Right
+      }
     }
   )
 }
@@ -245,7 +250,11 @@
   bleed:9pt,
 
   margin-width:.2in,
-  margin-height:.2in
+  margin-height:.2in,
+
+  bleed-marks:true,
+  cut-marks:true,
+  registration-marks:true,
 ) = {
 
   let markly-context = (:)
@@ -259,6 +268,10 @@
   markly-context.insert("margin-width",  margin-width)
 
   markly-context.insert("bleed",  bleed)
+
+  markly-context.insert("bleed-marks", bleed-marks)
+  markly-context.insert("cut-marks",  cut-marks)
+  markly-context.insert("registration-marks",  registration-marks)
 
   return markly-context
 }

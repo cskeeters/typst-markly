@@ -97,7 +97,11 @@ Finally, the `bleed` value is the distance between the cut line and bleed line, 
   // bleed:9pt,
 
   // margin-width:.2in,
-  // margin-height:.2in
+  // margin-height:.2in,
+
+  // bleed-marks:true,
+  // cut-marks:true,
+  // registration-marks:true,
 )
 
 // Configure the page to draw marks
