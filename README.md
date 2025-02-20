@@ -45,15 +45,6 @@ Since this is a bit difficult to do there are some limitations to using this pac
 
 # Usage
 
-Initialize a new project from this template:
-
-```sh
-cd
-typst init @preview/markly:0.2.0
-cd markly
-typst compile main.typ
-```
-
 ## Setup
 
 Use `setup` to create a "context" that other markly methods need.  This is just a dictionary with values it so we don't repeat values.
