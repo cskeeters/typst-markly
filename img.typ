@@ -1,9 +1,10 @@
-#import "@preview/markly:0.2.0"
+#import "@preview/markly:0.3.0"
 
 #let markly_context = markly.setup(
   stock-width:4in,
   stock-height:3in,
 
+  bleed: 12pt,
   content-width: 3in,
   content-height:2in,
 )
