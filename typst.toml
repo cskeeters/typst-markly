@@ -8,4 +8,4 @@ description = "Typst package for bleed, cut and registration marks"
 repository = "https://github.com/cskeeters/typst-markly"
 categories = ["layout"]
 exclude = ["main.pdf"]
-compiler = "0.12.0"
+compiler = "0.13.0"
