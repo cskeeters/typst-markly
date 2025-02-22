@@ -47,7 +47,7 @@ Since this is a bit difficult to do there are some limitations to using this pac
 
 ## Setup
 
-Use `setup` to create a "context" that other markly methods need.  This is just a dictionary with values it so we don't repeat values.
+Use `setup` to create a "context", a dictionary with parameters that is passed to other markly methods.
 
 The *stock* width and height is your *actual* paper size.
 
