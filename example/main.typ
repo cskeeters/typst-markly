@@ -64,7 +64,7 @@
 
     + Chop bagels into crouton-sized pieces.  Put pieces into a mixing bowl.  Add olive oil, salt, and pepper and mix.  Olive oils #link("https://www.amazon.com/dp/B01MT673U6")[sprayers] work well for this task.
     + Optionally, chop the lettuce into bite-sized pieces.
-    + Put bagel pieces into the air fryer for 4-5 minutes on 400#sym.degree.f.
+    + Put bagel pieces into the air fryer for 4-5 minutes on 400#sym.degree;~F.
     + Add lettuce and blue cheese dressing to a mixing bowl and mix.
     + Chop artichokes and black olives according to your preference and add to the salad.
     + Sprinkle in pine nuts.
