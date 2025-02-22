@@ -231,8 +231,8 @@
     top + left,
     dx: -(margin-width+bleed),
     dy: -(margin-height+bleed),
-    image.decode(
-      img-data,
+    image(
+      bytes(img-data),
       width:100%+margin-width*2+bleed*2,
       height:100%+margin-height*2+bleed*2)
   )
