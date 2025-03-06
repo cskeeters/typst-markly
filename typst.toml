@@ -7,5 +7,5 @@ license = "MIT"
 description = "Typst package for bleed, cut and registration marks"
 repository = "https://github.com/cskeeters/typst-markly"
 categories = ["layout"]
-exclude = ["main.pdf"]
+exclude = ["example", "tests", "img.png", "img.typ"]
 compiler = "0.13.0"
