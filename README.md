@@ -5,7 +5,7 @@ It's likely that some future version of Typst will obsolete this package.  Until
 
 # Demo
 
-![Markly Demo](img.png)
+![Markly Demo](img.svg)
 
 ...can be generated with:
 
@@ -13,11 +13,12 @@ It's likely that some future version of Typst will obsolete this package.  Until
 #import "@preview/markly:0.2.0"
 
 #let markly-context = markly.setup(
-  stock-width:4in,
-  stock-height:3in,
+  stock-width:6in,
+  stock-height:4in,
 
-  content-width: 3in,
-  content-height:2in,
+  bleed: 12pt,
+  content-width: 4in,
+  content-height:3in,
 )
 
 #show: markly.page-setup.with(markly-context)

@@ -1,12 +1,12 @@
 #import "@preview/markly:0.3.0"
 
 #let markly_context = markly.setup(
-  stock-width:4in,
-  stock-height:3in,
+  stock-width:6in,
+  stock-height:4in,
 
   bleed: 12pt,
-  content-width: 3in,
-  content-height:2in,
+  content-width: 4in,
+  content-height:3in,
 )
 
 #show: markly.page-setup.with(markly_context)
