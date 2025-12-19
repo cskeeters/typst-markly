@@ -38,6 +38,29 @@ For a more detailed example, see [main.typ](example/main.typ) and [main.pdf](exa
 
 # Notes
 
+## Margins
+
+Markly defaults to a mode of operation where content you add is offset from the cut lines kinda like `page.margin`.  This margin is controlled by `margin-width` and `margin-height` which default to `.2in`.  In this mode you can add a background color for a title all the way to the bleed lines using `to-bleed` without affecting these margins.
+
+If you want full control of the content and will manage the margins inside the content you add, set `margin-width` and `margin-height` to `-bleed` like this:
+
+```typst
+#let bleed = 9pt
+#let markly-context = markly.setup(
+  content-width:7in,
+  content-height:5in,
+
+  bleed:bleed,
+
+  margin-width:-bleed,
+  margin-height:-bleed,
+)
+```
+
+With this code, the cursor will start the top left of the *bleed box*.
+
+## Limitations
+
 Since this is a bit difficult to do there are some limitations to using this package.  Here are a few examples:
 
 * `inside`/`outside` margins don't work on pages
@@ -71,12 +94,19 @@ The *margin* width and height are the amounts between the edge of the cut line a
 | margin-width  | 6in
 | margin-height | 4in
 
-Finally, the `bleed` value is the distance between the cut line and bleed line, or the over-print amount that can occur because we have extra paper past the cut line.
+`bleed` is the distance between the cut line and bleed line, or the over-print amount that can occur because we have extra paper past the cut line.
 
 | Parameter     | Default Value
 | ------------- | --------------
 | bleed         | 9pt
 
+Three parameters control which marks are drawn
+
+| Parameter          | Default Value
+| ------------------ | --------------
+| bleed-marks        | true
+| cut-marks          | true
+| registration-marks | true
 
 ```typst
 #let markly-context = markly.setup(
