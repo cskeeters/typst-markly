@@ -1,4 +1,4 @@
-#import "@preview/markly:0.3.0"
+#import "@preview/markly:0.4.0"
 
 #let markly_context = markly.setup(
   stock-width:6in,
