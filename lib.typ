@@ -1,4 +1,4 @@
-#import "@preview/cetz:0.3.3"
+#import "@preview/cetz:0.4.2"
 
 #let marks(markly-context) = {
 
